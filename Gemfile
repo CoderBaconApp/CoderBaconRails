@@ -49,3 +49,5 @@ end
 #Custom Gems
 gem 'devise'
 gem 'pg'
+gem 'haml'
+gem 'haml-rails'
