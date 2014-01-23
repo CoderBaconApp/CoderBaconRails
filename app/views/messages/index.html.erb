@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Sender</th>
+    <th>Receiver</th>
+    <th>Subject</th>
+    <th>Body</th>
+  </tr>
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.sender.email %></td>
+    <td><%= message.receiver.email %></td>
+    <td><%= message.subject %></td>
+    <td><%= message.body %></td>
+  </tr>
+<% end %>
+</table>
