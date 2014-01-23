@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123013116) do
+ActiveRecord::Schema.define(version: 20140123023031) do
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140123013116) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read"
   end
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"

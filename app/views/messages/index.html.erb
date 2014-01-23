@@ -1,16 +1,27 @@
-<table>
-  <tr>
-    <th>Sender</th>
-    <th>Receiver</th>
-    <th>Subject</th>
-    <th>Body</th>
-  </tr>
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.sender.email %></td>
-    <td><%= message.receiver.email %></td>
-    <td><%= message.subject %></td>
-    <td><%= message.body %></td>
-  </tr>
+<h1>Messages</h1>
+<% if @received_messages.any? %>
+  <h2>Received Messages</h2>
+  <table>
+    <tr>
+      <th>Sender</th>
+      <th>Receiver</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Read</th>
+    </tr>
+    <%= render partial: "message", collection: @received_messages %>
+  </table>
 <% end %>
-</table>
+<% if @sent_messages.any? %>
+  <h2>Sent Messages</h2>
+  <table>
+    <tr>
+      <th>Sender</th>
+      <th>Receiver</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Read</th>
+    </tr>
+    <%= render partial: "message", collection: @sent_messages %>
+  </table>
+<% end %>
