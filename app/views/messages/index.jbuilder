@@ -1,0 +1,1 @@
+json.partial! partial: 'messages/message', collection: @messages, as: :message
