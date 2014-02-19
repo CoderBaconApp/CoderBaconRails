@@ -51,3 +51,7 @@ gem 'devise'
 gem 'pg'
 gem 'haml'
 gem 'haml-rails'
+
+group :production do
+  gem 'rails_12factor'
+end
