@@ -6,4 +6,20 @@ class MessagesController < ApplicationController
     @received_messages = current_user.received_messages
   end
 
+  def new
+    @message = current_user.sent_messages.new
+  end
+
+  def create
+    @message = Message.new(message_params)
+    @message.sender = current_user
+    @message.receiver = User.find(2)
+    @message.save!
+  end
+
+  private
+  def message_params
+    params.require(:message).permit(:subject, :body)
+  end
+
 end

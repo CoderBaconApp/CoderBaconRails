@@ -1,0 +1,6 @@
+= form_for @message do |f|
+  = label_tag :subject, "Subject"
+  = f.text_field :subject
+  = label_tag :body, "Body"
+  = f.text_area :body
+  = f.submit "Create"
