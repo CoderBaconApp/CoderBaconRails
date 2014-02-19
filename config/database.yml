@@ -3,7 +3,6 @@ development:
   encoding: unicode
   database: coderbacon_development
   pool: 5
-  username: Justin
   timeout: 5000
 
 test:
@@ -11,5 +10,4 @@ test:
   encoding: unicode
   database: coderbacon_test
   pool: 5
-  username: Justin
   timeout: 5000
