@@ -7,10 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
-  
-<%= yield %>
+  <%= render partial: "navbar" %>
+
+  <div class="container">
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
+    <%= yield %>
+    <span class="glyphicon glyphicon-search"></span>
+  </div>
 
 </body>
 </html>
