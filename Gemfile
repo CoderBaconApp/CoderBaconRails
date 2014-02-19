@@ -48,6 +48,7 @@ gem 'devise'
 gem 'pg'
 gem 'haml'
 gem 'haml-rails'
+gem 'foreman'
 
 group :production do
   gem 'rails_12factor'
