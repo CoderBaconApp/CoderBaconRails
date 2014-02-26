@@ -1,4 +1,6 @@
 = form_for @message do |f|
+  = label_tag :receiver_id, "Receiver"
+  = f.select(:receiver_id, options_from_collection_for_select(@users, :id, :email))
   = label_tag :subject, "Subject"
   = f.text_field :subject
   = label_tag :body, "Body"

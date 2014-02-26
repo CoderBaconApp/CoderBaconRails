@@ -7,19 +7,20 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @users = User.all
     @message = current_user.sent_messages.new
   end
 
   def create
     @message = Message.new(message_params)
     @message.sender = current_user
-    @message.receiver = User.find(2)
+    # @message.receiver = User.find(:receiver)
     @message.save!
   end
 
   private
   def message_params
-    params.require(:message).permit(:subject, :body)
+    params.require(:message).permit(:subject, :body, :receiver_id)
   end
 
 end
