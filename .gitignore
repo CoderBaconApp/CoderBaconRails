@@ -28,3 +28,6 @@ config/secrets.yml
 
 #Local Environment Setup
 .env
+
+#Ignore ruby mine
+.idea/

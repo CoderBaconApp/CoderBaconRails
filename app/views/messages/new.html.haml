@@ -1,8 +1,19 @@
 = form_for @message do |f|
-  = label_tag :receiver_id, "Receiver"
-  = f.select(:receiver_id, options_from_collection_for_select(@users, :id, :email))
-  = label_tag :subject, "Subject"
-  = f.text_field :subject
-  = label_tag :body, "Body"
-  = f.text_area :body
-  = f.submit "Create"
+  .row
+    .col-md-4
+      = label_tag :receiver_id, "Receiver"
+    .col-md-8
+      = f.select(:receiver_id, options_from_collection_for_select(@users, :id, :email))
+  .row
+    .col-md-4
+      = label_tag :subject, "Subject"
+    .col-md-8
+      = f.text_field :subject
+  .row
+    .col-md-4
+      = label_tag :body, "Body"
+    .col-md-8
+      = f.text_area :body
+  .row
+    .col-md-12
+      = f.submit "Create"

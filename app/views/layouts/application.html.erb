@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width">
 </head>
 <body>
   <%= render partial: "navbar" %>
@@ -13,7 +14,6 @@
     <div class="notice"><%= notice %></div>
     <div class="alert"><%= alert %></div>
     <%= yield %>
-    <span class="glyphicon glyphicon-search"></span>
   </div>
 
 </body>
