@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    current_user.conversations
+    @convos = current_user.conversations
   end
 
   def show
