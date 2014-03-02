@@ -1,5 +1,5 @@
 json.listeners do
-   json.partial! 'users/user', collection: conversation.users, as: :user
+   json.partial! 'users/user', collection: conversation.users - [current_user], as: :user
 end
 
 json.last_message do

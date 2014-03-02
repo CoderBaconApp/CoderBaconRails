@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    redirect messages_path(params[:id])
+    redirect_to conversation_messages_path(params[:id])
   end
 
   def new
