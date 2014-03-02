@@ -4,25 +4,10 @@ class MessagesController < ApplicationController
   def index
     @sent_messages = current_user.sent_messages
     @received_messages = current_user.received_messages
-
-    # @sent_conversations = current_user.sent_messages.select("MAX(id) AS id").select("receiver_id").group(:receiver_id).collect { |x| [x.id, x.receiver_id] }
-    # @received_conversations = current_user.received_messages.select("MAX(id) AS id").select("sender_id").group(:sender_id).collect { |x| [x.id, x.sender_id] }
-
-    # @sent_conversations.zip(@received_conversations).collect do  |arr|
-    #   sent = arr[0]
-    #   received = arr[1]
-
-    #   if sent[0] > received[0]
-    #     return sent[0]
-    #   else
-    #     return received[0]
-    #   end
-    # end
-
   end
 
   def new
-    @users = User.all
+    @users = User.all.where.not(id: current_user)
     @message = current_user.sent_messages.new
   end
 
