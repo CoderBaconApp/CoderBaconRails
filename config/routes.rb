@@ -2,6 +2,11 @@ CoderBaconRails::Application.routes.draw do
   devise_for :users
   root 'home#index'
   resources :messages
+
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create], controller: :conversation_messages
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  protect_from_forgery except: create
   before_filter :authenticate_user!
 
   def index
@@ -11,12 +12,19 @@ class MessagesController < ApplicationController
   end
 
   def create
-    # Find or create a conversation
-    current_user.conversations.include(:users).where("user.id": message_params[:receiver_id])
+    convo = Conversation.new
 
     @message = Message.new(message_params)
     @message.sender = current_user
     @message.save!
+
+    convo.messages << @message
+
+    convo.users << current_user
+    convo.users << User.find message_params[:receiver_id]
+
+    convo.save!
+
     flash.notice = "Message successfully created"
     redirect_to :back
   end
