@@ -5,4 +5,8 @@ class Conversation < ActiveRecord::Base
   def last_message
     messages.order("created_at desc").first
   end
+
+  def listener_emails
+    users.map { |user| user.email }.join(", ")
+  end
 end

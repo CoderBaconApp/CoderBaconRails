@@ -1,7 +1,7 @@
-= form_for @message do |f|
+= form_for @message, url: conversation_path  do |f|
   .row
     .col-md-4
-      = label_tag :receiver_id, "Receiver"
+      = label_tag :user_id, "Receiver"
     .col-md-8
       = f.select(:receiver_id, options_from_collection_for_select(@users, :id, :email))
   .row

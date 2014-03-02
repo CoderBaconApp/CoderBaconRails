@@ -1,37 +1,29 @@
 class MessagesController < ApplicationController
-  protect_from_forgery except: create
+  protect_from_forgery except: :create
   before_filter :authenticate_user!
 
   def index
-    @sent_messages = current_user.sent_messages
-  end
-
-  def new
-    @users = User.where.not(id: current_user)
-    @message = current_user.sent_messages.new
+    @convo = current_user.conversations.where(id: params[:conversation_id]).first
+    if @convo then @messages = @convo.messages else head status: 400 end
   end
 
   def create
-    convo = Conversation.new
+    convo = current_user.conversations.where(id: params[:conversation_id]).first
 
-    @message = Message.new(message_params)
-    @message.sender = current_user
-    @message.save!
+    if convo
+      msg = Message.new(message_params)
+      msg.sender = current_user
+      convo.messages << msg
 
-    convo.messages << @message
-
-    convo.users << current_user
-    convo.users << User.find message_params[:receiver_id]
-
-    convo.save!
-
-    flash.notice = "Message successfully created"
-    redirect_to :back
+      head status: if msg.save and convo.save then 200 else 400 end
+    else
+      head status: 400
+    end
   end
 
   private
-  def message_params
-    params.require(:message).permit(:subject, :body, :receiver_id)
-  end
 
+  def message_params
+    params.require(:message).permit(:subject, :body)
+  end
 end

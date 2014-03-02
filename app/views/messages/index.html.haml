@@ -1,11 +1,9 @@
-%h1 Messages
-- if @sent_messages.any?
-  %h2 Sent Messages
+%h1 Conversation with #{@convo.listener_emails}
+- if @messages.any?
   %table
     %tr
       %th Sender
-      %th Receiver
       %th Subject
       %th Body
       %th Read
-    = render partial: "message", collection: @sent_messages
+    = render partial: "message", collection: @messages
