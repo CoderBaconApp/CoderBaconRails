@@ -1,8 +1,8 @@
-= if flash[:notice] || flash[:alert]
+-if flash[:notice] || flash[:alert]
   .row
-    = if flash[:notice]
+    -if flash[:notice]
       .notice
         = flash[:notice]
-    = if flash[:alert]
+    -if flash[:alert]
       .alert
         = flash[:alert]
