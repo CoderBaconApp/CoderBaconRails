@@ -11,22 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123023031) do
+ActiveRecord::Schema.define(version: 20140302071255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "conversations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "listeners", force: true do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "conversation_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "listeners", ["user_id", "conversation_id"], name: "index_listeners_on_user_id_and_conversation_id", unique: true, using: :btree
+
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
-    t.integer  "receiver_id"
     t.string   "subject"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "read"
+    t.integer  "conversation_id"
   end
 
-  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "users", force: true do |t|

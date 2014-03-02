@@ -3,15 +3,17 @@ class MessagesController < ApplicationController
 
   def index
     @sent_messages = current_user.sent_messages
-    @received_messages = current_user.received_messages
   end
 
   def new
-    @users = User.all.where.not(id: current_user)
+    @users = User.where.not(id: current_user)
     @message = current_user.sent_messages.new
   end
 
   def create
+    # Find or create a conversation
+    current_user.conversations.include(:users).where("user.id": message_params[:receiver_id])
+
     @message = Message.new(message_params)
     @message.sender = current_user
     @message.save!
