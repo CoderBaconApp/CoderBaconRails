@@ -1,21 +1,12 @@
-%h1 Messages
-- if @received_messages.any?
-  %h2 Received Messages
-  %table
+%h2 Conversation with #{@convo.listener_emails [current_user]}
+- if @messages.any?
+  %table.table
     %tr
       %th Sender
-      %th Receiver
       %th Subject
       %th Body
       %th Read
-    = render partial: "message", collection: @received_messages
-- if @sent_messages.any?
-  %h2 Sent Messages
-  %table
-    %tr
-      %th Sender
-      %th Receiver
-      %th Subject
-      %th Body
-      %th Read
-    = render partial: "message", collection: @sent_messages
+    = render partial: "message", collection: @messages
+
+%h2 Send a message
+= render partial: "new", :locals => { :convo => @convo, :message => @message }
