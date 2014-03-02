@@ -6,7 +6,7 @@ class Conversation < ActiveRecord::Base
     messages.order("created_at desc").first
   end
 
-  def listener_emails
-    users.map { |user| user.email }.join(", ")
+  def listener_emails except = []
+    (users - except).map { |user| user.email }.join(", ")
   end
 end
