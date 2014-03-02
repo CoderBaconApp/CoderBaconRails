@@ -1,14 +1,9 @@
 = form_for @message, url: conversation_messages_path(@convo) do |f|
-  .row
-    .col-md-4
-      = label_tag :subject, "Subject"
-    .col-md-8
-      = f.text_field :subject
-  .row
-    .col-md-4
-      = label_tag :body, "Body"
-    .col-md-8
-      = f.text_area :body
-  .row
-    .col-md-12
-      = f.submit "Create"
+  .form-group
+    = label_tag :subject, "Subject"
+    = f.text_field :subject, class: 'form-control'
+  .form-group
+    = label_tag :body, "Body"
+    = f.text_area :body, class: 'form-control'
+  .form-group
+    = f.submit "Create", class: 'btn btn-primary'
