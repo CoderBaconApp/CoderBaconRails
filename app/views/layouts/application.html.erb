@@ -11,8 +11,7 @@
   <%= render partial: "navbar" %>
 
   <div class="container">
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
+    <%= render partial: "flashes", :locals => {:flash => flash } %>
     <%= yield %>
   </div>
 
