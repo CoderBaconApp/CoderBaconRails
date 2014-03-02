@@ -7,3 +7,6 @@
       %th Body
       %th Read
     = render partial: "message", collection: @messages
+
+%h1 Send a message
+= render partial: "new", :locals => { :convo => @convo, :message => @message }
