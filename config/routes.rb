@@ -2,7 +2,7 @@ CoderBaconRails::Application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :conversations, only: [:index, :new, :show, :create] do
+  resources :conversations, only: [:index, :show, :create] do
     resources :messages, only: [:index, :create]
   end
 
