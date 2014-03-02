@@ -3,7 +3,7 @@ class Conversation < ActiveRecord::Base
   has_many :messages
 
   def last_message
-    messages.order("created_at desc").first || "No messages"
+    messages.order("created_at desc").first || Message.new
   end
 
   def listener_emails except = []
