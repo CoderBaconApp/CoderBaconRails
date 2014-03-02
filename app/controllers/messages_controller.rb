@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
   def index
     @convo = current_user.conversations.where(id: params[:conversation_id]).first
     if @convo then @messages = @convo.messages else head status: 400 end
+    @message = Message.new
   end
 
   def create
@@ -15,7 +16,11 @@ class MessagesController < ApplicationController
       msg.sender = current_user
       convo.messages << msg
 
-      head status: if msg.save and convo.save then 200 else 400 end
+      if msg.save and convo.save
+        redirect_to action: :index
+      else
+        head status: 400
+      end
     else
       head status: 400
     end

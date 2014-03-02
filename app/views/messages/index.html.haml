@@ -1,4 +1,4 @@
-%h1 Conversation with #{@convo.listener_emails [current_user]}
+%h2 Conversation with #{@convo.listener_emails [current_user]}
 - if @messages.any?
   %table.table
     %tr
@@ -7,3 +7,6 @@
       %th Body
       %th Read
     = render partial: "message", collection: @messages
+
+%h2 Send a message
+= render partial: "new", :locals => { :convo => @convo, :message => @message }
