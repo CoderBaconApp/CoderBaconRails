@@ -15,7 +15,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.sender = current_user
     @message.save!
-    render index
+    flash.notice = "Message successfully created"
+    redirect_to :back
   end
 
   private
