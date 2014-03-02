@@ -1,7 +1,8 @@
 %h1 Conversations
 - if @conversations.any?
-  %table
+  %table.table
     %tr
+      %th Show
       %th Listeners
       %th Last Message
     = render partial: "conversation", collection: @conversations
