@@ -4,11 +4,11 @@
       %a.navbar-brand{ :href=> root_path } CoderBacon
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
+        %li{class: params[:controller] == 'home' && "active"}
           %a{ :href=> root_path } Home
-        %li
+        %li{class: params[:controller] == 'users' && "active"}
           %a{ :href=> users_path } Users
-        %li.dropdown
+        %li.dropdown{class: (params[:controller] == 'conversations' || params[:controller] == 'messages') && "active"}
           %a.dropdown-toggle{ :href=>"#", :data => { :toggle=>"dropdown" }} Conversations
           %ul.dropdown-menu
             %li
