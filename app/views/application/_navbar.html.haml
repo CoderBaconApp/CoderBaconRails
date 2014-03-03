@@ -5,7 +5,9 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          %a{ :href=>"#" } Home
+          %a{ :href=> root_path } Home
+        %li
+          %a{ :href=> users_path } Users
         %li.dropdown
           %a.dropdown-toggle{ :href=>"#", :data => { :toggle=>"dropdown" }} Conversations
           %ul.dropdown-menu
