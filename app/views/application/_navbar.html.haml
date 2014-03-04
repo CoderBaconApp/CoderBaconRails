@@ -8,11 +8,9 @@
           %a{ :href=> root_path } Home
         %li{class: params[:controller] == 'users' && "active"}
           %a{ :href=> users_path } Users
-        %li.dropdown{class: (params[:controller] == 'conversations' || params[:controller] == 'messages') && "active"}
-          %a.dropdown-toggle{ :href=>"#", :data => { :toggle=>"dropdown" }} Conversations
-          %ul.dropdown-menu
-            %li
-              %a{:href=> conversations_path} All
+        -if user_signed_in?
+          %li.dropdown{class: (params[:controller] == 'conversations' || params[:controller] == 'messages') && "active"}
+            %a{ :href=> conversations_path } Conversations
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?
           %li.dropdown
