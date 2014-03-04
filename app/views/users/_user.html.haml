@@ -1,6 +1,6 @@
 .col-sm-6.col-md-4
   .thumbnail
-    = image_tag avatar_url(user), alt: "#{user.email}'s gravatar"
+    = image_tag avatar_url(user), alt: "#{user.email}'s gravatar", :class => 'avatar'
     .caption
       %h3= user.email
       %p ...This is the crappy user profile...
