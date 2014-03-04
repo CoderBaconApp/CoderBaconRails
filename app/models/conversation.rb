@@ -1,5 +1,6 @@
 class Conversation < ActiveRecord::Base
-  has_and_belongs_to_many :users, join_table: :listeners
+  has_many :listeners
+  has_many :users, through: :listeners
   has_many :messages
 
   def last_message
