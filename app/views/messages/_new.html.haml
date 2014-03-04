@@ -1,4 +1,4 @@
-= form_for @message, url: conversation_messages_path(@convo) do |f|
+= form_for @message, url: @form_post_path do |f|
   .form-group
     = label_tag :subject, "Subject"
     = f.text_field :subject, class: 'form-control'
