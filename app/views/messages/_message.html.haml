@@ -1,5 +1,6 @@
-%tr
-  %td= message.sender.email
-  %td= message.subject
-  %td= message.body
-  %td= message.read
+.div.message-row
+  %div{:class => message_popover_direction_class(message)}
+    .arrow
+    %h3.popover-title= message.subject
+    .popover-content
+      %p= message.body

@@ -1,13 +1,11 @@
--if @conversation
-  %h2 Conversation with #{@conversation.listener_emails [current_user]}
-  - if @conversation.messages.any?
-    %table.table
-      %tr
-        %th Sender
-        %th Subject
-        %th Body
-        %th Read
-      = render partial: "message", collection: @conversation.messages
-
-%h2 Send a message
-= render partial: "new", :locals => { :message => @message, :form_post_path => @form_post_path }
+.row
+  .col-md-4.col-md-offset-4
+    -if @conversation
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Conversation with #{@conversation.listener_emails [current_user]}
+        .panel-body
+          - if @conversation.messages.any?
+            = render partial: "message", collection: @conversation.messages
+          %h2 Send a message
+          = render partial: "new", :locals => { :message => @message, :form_post_path => @form_post_path }
