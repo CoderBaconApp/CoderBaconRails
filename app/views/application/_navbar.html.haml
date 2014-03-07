@@ -1,16 +1,21 @@
-.navbar.navbar-inverse.navbar-fixed-top{ :role => "navigation" }
+%nav.navbar.navbar-inverse.navbar-default.navbar-static-top{:role => "navigation"}
   .container
+    / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %a.navbar-brand{ :href=> root_path } CoderBacon
-    .collapse.navbar-collapse
+      %button.navbar-toggle{"data-target" => "#coderbacon-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path} CoderBacon
+    / Collect the nav links, forms, and other content for toggling
+    #coderbacon-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
-          %a{ :href=>"#" } Home
-        %li.dropdown
-          %a.dropdown-toggle{ :href=>"#", :data => { :toggle=>"dropdown" }} Conversations
-          %ul.dropdown-menu
-            %li
-              %a{:href=> conversations_path} All
+        %li{class: params[:controller] == 'users' && "active"}
+          %a{ :href=> users_path } Users
+        -if user_signed_in?
+          %li.dropdown{class: (params[:controller] == 'conversations' || params[:controller] == 'messages') && "active"}
+            %a{ :href=> conversations_path } Conversations
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?
           %li.dropdown

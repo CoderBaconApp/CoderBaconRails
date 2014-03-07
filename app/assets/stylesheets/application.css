@@ -12,4 +12,21 @@
  *= require_self
  *= require_tree .
  */
- body { padding-top: 70px; }
+ .avatar { border-radius: 4px; }
+ .popover {
+    position: relative;
+    display: block;
+    /*width: 100%;*/
+    margin: 20px;
+ }
+
+ .message-row {
+  overflow:hidden;
+ }
+ .popover.right {
+  float:left;
+ }
+
+ .popover.left {
+  float:right;
+ }
