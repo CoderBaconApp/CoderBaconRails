@@ -3,30 +3,33 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @message = Message.new
+
     if params[:conversation_id].present?
-      puts "Using Conversation Id"
-      @conversation = current_user.conversations.find(params[:conversation_id])
-      @form_post_path = conversation_messages_path(@conversation)
+      @conversation = current_user.conversations.find_by_id(params[:conversation_id])
+
+      unless @conversation
+        head status: 400
+      else
+        @form_post_path = conversation_messages_path(@conversation)
+      end
     elsif params[:user_id].present?
-      puts "Using User Id"
-      other_user = User.find(params[:user_id])
+      other_user = User.find_by_id(params[:user_id])
 
       #Can't start a conversation with ourself
-      if other_user == current_user
+      if !other_user or other_user == current_user
         head status: 400
-      end
+      else
+        listeners = [current_user, other_user]
+        conversation_ids = Listener.select("conversation_id").where(:user_id => listeners).group("conversation_id").having("count(*) = #{listeners.length}").pluck("conversation_id")
+        puts "Conversations Ids: #{conversation_ids}"
+        if conversation_ids.length == 1
+          @conversation = current_user.conversations.find(conversation_ids[0])
+        end
 
-      listeners = [current_user, other_user]
-      conversation_ids = Listener.select("conversation_id").where(:user_id => listeners).group("conversation_id").having("count(*) = #{listeners.length}").pluck("conversation_id")
-      puts "Conversations Ids: #{conversation_ids}"
-      if conversation_ids.length == 1
-        @conversation = current_user.conversations.find(conversation_ids[0])
+        @form_post_path = user_messages_path(other_user)
       end
-
-      @form_post_path = user_messages_path(other_user)
     end
-
-    @message = Message.new
   end
 
   def create
