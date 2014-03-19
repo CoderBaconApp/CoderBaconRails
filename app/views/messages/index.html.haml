@@ -10,5 +10,6 @@
       .panel-body
         - if @conversation and @conversation.messages.any?
           = render partial: "message", collection: @conversation.messages
+          = will_paginate @messages
         %h2 Send a message
         = render partial: "new", :locals => { :message => @message, :form_post_path => @form_post_path }

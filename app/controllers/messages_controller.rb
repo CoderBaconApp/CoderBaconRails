@@ -25,6 +25,7 @@ class MessagesController < ApplicationController
         puts "Conversations Ids: #{conversation_ids}"
         if conversation_ids.length == 1
           @conversation = current_user.conversations.find(conversation_ids[0])
+          @messages = @conversation.messages.paginate(page: params[:page])
         end
 
         @form_post_path = user_messages_path(other_user)

@@ -50,6 +50,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'foreman'
 gem 'friendly_id'
+gem 'will_paginate'
 
 group :production do
   gem 'rails_12factor'
