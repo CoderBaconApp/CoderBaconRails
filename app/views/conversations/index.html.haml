@@ -6,3 +6,7 @@
       %th Listeners
       %th Last Message
     = render partial: "conversation", collection: @conversations
+- else
+  Visit
+  = link_to "Users", users_path
+  to start a conversation
