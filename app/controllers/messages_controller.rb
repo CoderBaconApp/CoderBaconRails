@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
         @form_post_path = conversation_messages_path(@conversation)
       end
     elsif params[:user_id].present?
-      other_user = User.find_by_id(params[:user_id])
+      other_user = User.friendly.find(params[:user_id])
 
       #Can't start a conversation with ourself
       if !other_user or other_user == current_user
@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
     if params[:conversation_id].present?
       conversation = current_user.conversations.find(params[:conversation_id])
     elsif params[:user_id].present?
-      other_user = User.find(params[:user_id])
+      other_user = User.friendly.find(params[:user_id])
 
       #Can't start a conversation with ourself
       if other_user == current_user
