@@ -62,5 +62,8 @@ end
 
 group :development do
   gem 'html2haml'
+  gem 'rack-mini-profiler'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
