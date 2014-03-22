@@ -21,14 +21,12 @@ describe MessagesController do
         it { should be_success }
       end
 
-      context "asking for a nonexistant conversation" do
-        let(:req) { get :index, conversation_id: 123 }
-        it { should be_bad_request }
+      it "throws routing error when asking for a nonexistant conversation" do
+        expect { get :index, conversation_id: 123 }.to raise_error ActionController::RoutingError
       end
 
-      context "seeing messages from ourself" do
-        let(:req) { get :index, user_id: me.id }
-        it { should be_bad_request }
+      it "seeing messages from ourself" do
+        expect { get :index, user_id: me.id }.to raise_error ActionController::RoutingError
       end
 
       context "messaging a user we have a convo with" do
@@ -43,9 +41,8 @@ describe MessagesController do
         pending it "should return the new convo path with the view"
       end
 
-      context "messaging a nonexistant user" do
-        let(:req) { get :index, user_id: 123 }
-        it { should be_bad_request }
+      it "throws routing error when messaging a nonexistant user" do
+        expect { get :index, user_id: 123 }.to raise_error ActionController::RoutingError
       end
     end
 
