@@ -9,4 +9,17 @@ class ConversationFinder
       Conversation.find_by_id convos.first
     else nil end
   end
+
+  def self.find_or_build listeners
+    conversation = ConversationFinder.with_listeners(listeners)
+
+    unless conversation
+      conversation = Conversation.new
+      conversation.listeners << listeners.collect do |listener|
+        Listener.new(user: listener)
+      end
+    end
+
+    conversation
+  end
 end
