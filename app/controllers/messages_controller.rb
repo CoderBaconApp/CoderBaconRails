@@ -12,9 +12,10 @@ class MessagesController < ApplicationController
       #TODO: refactor create to create a new convo on /conversation/messages
       @form_post_path = conversation_messages_path(@conversation)
 
-    elsif params[:user_id].present? and other_user = User.friendly.find_by_id(params[:user_id])
+    elsif params[:user_id].present? and other_user = User.friendly.find(params[:user_id])
       render_404 if other_user.id == current_user.id
       @conversation = ConversationFinder.with_listeners [current_user, other_user]
+      @receiver = other_user
       @form_post_path = user_messages_path(other_user)
     else
       render_404

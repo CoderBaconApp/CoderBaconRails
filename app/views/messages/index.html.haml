@@ -6,7 +6,7 @@
           - if @conversation
             Conversation with #{@conversation.listener_emails [current_user]}
           - else
-            New Conversation
+            New Conversation with #{@receiver.email}
       .panel-body
         - if @conversation and @conversation.messages.any?
           = render partial: "message", collection: @conversation.messages
