@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   def render_404
     raise ActionController::RoutingError.new("Not Found")
   end
+
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      ApiToken.exists?(token: token)
+    end
+  end
 end
