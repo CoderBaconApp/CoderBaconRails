@@ -2,6 +2,8 @@ CoderBaconRails::Application.routes.draw do
   devise_for :users
   root 'home#index'
 
+  post 'users/api_token' => 'users#api_token'
+
   concern :messageable do
     resources :messages, only: [:index, :create]
   end
