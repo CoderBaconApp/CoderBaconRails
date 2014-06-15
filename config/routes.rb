@@ -2,8 +2,6 @@ CoderBaconRails::Application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  post 'users/api_token' => 'users#api_token'
-
   concern :messageable do
     resources :messages, only: [:index, :create]
   end
@@ -11,6 +9,8 @@ CoderBaconRails::Application.routes.draw do
   resources :conversations, only: [:index], concerns: [:messageable]
 
   resources :users, only: [:index, :show], concerns: [:messageable]
+
+  resources :api_tokens, only: [:create, :destroy, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

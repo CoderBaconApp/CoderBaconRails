@@ -17,8 +17,14 @@ class ApplicationController < ActionController::Base
   end
 
   def restrict_access
+    puts "stuff"
     authenticate_or_request_with_http_token do |token, options|
+      puts "token: #{token}"
       ApiToken.exists?(token: token)
     end
+  end
+
+  def format_json?
+    request.format.json?
   end
 end

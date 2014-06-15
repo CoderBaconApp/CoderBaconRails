@@ -1,9 +1,10 @@
-class ApiTokenController < ApplicationController
+class ApiTokensController < ApplicationController
+  protect_from_forgery except: [:create, :destroy]
 
   # Validate the token
   def show
     # Eventually we want to expire tokens...
-    token = ApiToken.find_by_token(token_edit_params[:token])
+    token = ApiToken.find_by_token(params[:id])
     head status: if token then 200 else 401 end
   end
 
@@ -18,7 +19,9 @@ class ApiTokenController < ApplicationController
 
   # "Log out" by deleting the token
   def destroy
-    ApiToken.find_by_token(token_destroy_params[:token]).destroy_all
+    token = ApiToken.find_by_token(params[:id])
+    token.destroy if token
+    head status: 200
   end
 
   private

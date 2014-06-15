@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   protect_from_forgery except: :create
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :unless => :format_json?
+  before_filter :restrict_access, :if => :format_json?
 
   def index
     @message = Message.new
